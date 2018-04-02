@@ -38,14 +38,16 @@
             // checkedListBox1
             // 
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(12, 52);
+            this.checkedListBox1.Location = new System.Drawing.Point(16, 64);
+            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(264, 139);
+            this.checkedListBox1.Size = new System.Drawing.Size(351, 157);
             this.checkedListBox1.TabIndex = 0;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
             this.listBox1.Items.AddRange(new object[] {
             "lal",
             "lolp",
@@ -53,17 +55,19 @@
             "dasd",
             "dasda",
             "dsada"});
-            this.listBox1.Location = new System.Drawing.Point(282, 52);
+            this.listBox1.Location = new System.Drawing.Point(376, 64);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(255, 134);
+            this.listBox1.Size = new System.Drawing.Size(339, 164);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 344);
+            this.button1.Location = new System.Drawing.Point(16, 423);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 23);
+            this.button1.Size = new System.Drawing.Size(187, 28);
             this.button1.TabIndex = 2;
             this.button1.Text = "Export do Excelu";
             this.button1.UseVisualStyleBackColor = true;
@@ -71,32 +75,36 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(177, 344);
+            this.button2.Location = new System.Drawing.Point(236, 423);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(195, 23);
+            this.button2.Size = new System.Drawing.Size(260, 28);
             this.button2.TabIndex = 3;
             this.button2.Text = "Kopírování do vybraného adresáře";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(406, 344);
+            this.button3.Location = new System.Drawing.Point(541, 423);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(140, 23);
+            this.button3.Size = new System.Drawing.Size(187, 28);
             this.button3.TabIndex = 4;
             this.button3.Text = "Vytvoř graf";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 391);
+            this.ClientSize = new System.Drawing.Size(744, 481);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.checkedListBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Check Changes";
             this.Load += new System.EventHandler(this.Form1_Load);
