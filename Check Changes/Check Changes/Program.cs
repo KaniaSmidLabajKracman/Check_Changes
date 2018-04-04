@@ -19,20 +19,7 @@ namespace Check_Changes
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
-            //cyklus na otestování internetu (ON/OFF)
-            while (true)
-            {
-                if (Ping("www.google.com"))
-                {
-                    MessageBox.Show("Internet opět funguje!!!!");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Internet zatím nefunguje...");
-                }
-                System.Threading.Thread.Sleep(5000);
-            }
+            TestPingu();
         }
 
 
@@ -46,6 +33,25 @@ namespace Check_Changes
             if (reply.Status == IPStatus.Success)
                 return true;
             return false;
+        }
+
+        //Metoda na otestování metody Ping
+        public static void TestPingu()
+        {
+            //cyklus na otestování internetu (ON/OFF)
+            while (true)
+            {
+                if (Ping("www.google.com"))
+                {
+                    MessageBox.Show("Internet funguje!!!!");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Internet zatím nefunguje...");
+                }
+                System.Threading.Thread.Sleep(5000);
+            }
         }
     }
 }
