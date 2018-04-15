@@ -3,11 +3,6 @@ sdf
 sd
 fs
 df
-sdf
-sd
-fs
-df
-SDFASDFSDFASDFSDFSDFSDFSDF
 DF
 SDF
 SD
