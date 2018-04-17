@@ -234,7 +234,8 @@ namespace ProjektSTI
                 foreach (var commit in stat)
                 {
                     pocetRadku = pocetRadku + (int) (commit.pridane_radky - commit.odebrane_radky);
-                    GraphForm.chart1.Series["Počet přidaných řádků"].Points.AddY(pocetRadku);
+                    GraphForm.chart1.Series["Počet řádků"].Points.AddY(pocetRadku);
+                    GraphForm.chart1.Series["Počet řádků"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 };
             }
             catch (System.NullReferenceException)
