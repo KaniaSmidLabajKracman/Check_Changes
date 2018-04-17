@@ -230,9 +230,11 @@ namespace ProjektSTI
                 var stat = await sluzba.VratStatistikuZmenyRadkuSouboruAsync(selected_file);
                 //GraphForm.chart1.Series["Počet přidaných řádků"].Points.Clear();
                 stat.Reverse();
+                int pocetRadku = 0;
                 foreach (var commit in stat)
                 {
-                    GraphForm.chart1.Series["Počet přidaných řádků"].Points.AddY(commit.pridane_radky - commit.odebrane_radky);
+                    pocetRadku = pocetRadku + (int) (commit.pridane_radky - commit.odebrane_radky);
+                    GraphForm.chart1.Series["Počet přidaných řádků"].Points.AddY(pocetRadku);
                 };
             }
             catch (System.NullReferenceException)
