@@ -33,7 +33,7 @@ namespace ProjektSTI
             TextBox tb = (TextBox)sender;
             if (tb.Text == "")
             {
-                tb.Text = "ea92cf116983a0c3e9d3e07716082492d0d7bdfc";
+                tb.Text = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
                 tb.ForeColor = Color.LightGray;
             }
         }
@@ -52,7 +52,7 @@ namespace ProjektSTI
             TextBox tb = (TextBox)sender;
             if (tb.Text == "")
             {
-                tb.Text = "KaniaSmidLabajKracman";
+                tb.Text = "Antoninecek";
                 tb.ForeColor = Color.LightGray;
             }
         }
@@ -71,7 +71,7 @@ namespace ProjektSTI
             TextBox tb = (TextBox)sender;
             if (tb.Text == "")
             {
-                tb.Text = "Check_Changes";
+                tb.Text = "TEST";
                 tb.ForeColor = Color.LightGray;
             }
         }
@@ -88,13 +88,9 @@ namespace ProjektSTI
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            //string token = tokenBox.Text;
-            //string uzivatel = uzivatelBox.Text;
-            // string repozitar = repozitarBox.Text;
-
-            string token = "ea92cf116983a0c3e9d3e07716082492d0d7bdfc";
-            string uzivatel = "KaniaSmidLabajKracman";
-            string repozitar = "Check_Changes";
+            string token = tokenBox.Text;
+            string uzivatel = uzivatelBox.Text;
+            string repozitar = repozitarBox.Text;
 
             this.Hide();
             Sluzba s = new Sluzba();
