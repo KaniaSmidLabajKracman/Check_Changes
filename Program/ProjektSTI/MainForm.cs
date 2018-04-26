@@ -304,7 +304,7 @@ namespace ProjektSTI
             String cesta = VyberMistoUlozeni(nazev);
             String sha = TabulkaCommitu.SelectedRows[0].Cells[2].Value.ToString();
             String status = TabulkaCommitu.SelectedRows[0].Cells[3].Value.ToString();
-            if (!status.Equals("Removed"))
+            if (!status.Equals("removed"))
             {
                 try
                 {
