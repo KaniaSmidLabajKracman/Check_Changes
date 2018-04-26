@@ -18,7 +18,7 @@ namespace ProjektSTI
     {
         string Repozitar;
         string Uzivatel;
-        String tokenText = "ZDe TOKEN!!";
+        String tokenText = "f6953a9815f1ac7d211289af293363f5717c65fd";
         public LoginForm()
         {
             InitializeComponent();
