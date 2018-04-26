@@ -202,7 +202,7 @@ namespace ProjektSTI
             foreach (File soubor in soubory)
             {
                 pocetNovychSouboru++;
-                TabulkaCommitu.Rows.Insert(0, soubor.filename, soubor.datum_commitu.ToString(), soubor.sha.ToString());
+                TabulkaCommitu.Rows.Insert(0, soubor.filename, soubor.datum_commitu.ToString(), soubor.sha.ToString(), soubor.status.ToString());
             }
 
         }

@@ -35,14 +35,15 @@
             this.GrafButton = new System.Windows.Forms.Button();
             this.ExportButton = new System.Windows.Forms.Button();
             this.TabulkaCommitu = new System.Windows.Forms.DataGridView();
-            this.nazev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UlozitButton = new System.Windows.Forms.Button();
             this.notifikace = new System.Windows.Forms.Label();
             this.posledniRefresh = new System.Windows.Forms.Label();
             this.noveSoubory = new System.Windows.Forms.Label();
             this.pocetRadku = new System.Windows.Forms.Label();
+            this.nazev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Kontrolka)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabulkaCommitu)).BeginInit();
             this.SuspendLayout();
@@ -108,6 +109,7 @@
             this.TabulkaCommitu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TabulkaCommitu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nazev,
+            this.deleted,
             this.datum,
             this.sha});
             this.TabulkaCommitu.Location = new System.Drawing.Point(-2, 57);
@@ -121,32 +123,6 @@
             this.TabulkaCommitu.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
             this.TabulkaCommitu.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
             this.TabulkaCommitu.SelectionChanged += new System.EventHandler(this.TabulkaCommitu_SelectionChanged);
-            // 
-            // nazev
-            // 
-            this.nazev.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nazev.HeaderText = "Název souboru";
-            this.nazev.Name = "nazev";
-            this.nazev.ReadOnly = true;
-            this.nazev.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.nazev.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // datum
-            // 
-            this.datum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.datum.HeaderText = "Datum";
-            this.datum.Name = "datum";
-            this.datum.ReadOnly = true;
-            this.datum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.datum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // sha
-            // 
-            this.sha.HeaderText = "SHA";
-            this.sha.Name = "sha";
-            this.sha.ReadOnly = true;
-            this.sha.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.sha.Visible = false;
             // 
             // UlozitButton
             // 
@@ -195,6 +171,38 @@
             this.pocetRadku.TabIndex = 18;
             this.pocetRadku.Text = "Počty řádků:";
             // 
+            // nazev
+            // 
+            this.nazev.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazev.HeaderText = "Název souboru";
+            this.nazev.Name = "nazev";
+            this.nazev.ReadOnly = true;
+            this.nazev.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nazev.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // deleted
+            // 
+            this.deleted.HeaderText = "smazáno?";
+            this.deleted.Name = "deleted";
+            this.deleted.ReadOnly = true;
+            // 
+            // datum
+            // 
+            this.datum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.datum.HeaderText = "Datum";
+            this.datum.Name = "datum";
+            this.datum.ReadOnly = true;
+            this.datum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.datum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // sha
+            // 
+            this.sha.HeaderText = "SHA";
+            this.sha.Name = "sha";
+            this.sha.ReadOnly = true;
+            this.sha.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.sha.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,14 +238,15 @@
         private System.Windows.Forms.Button GrafButton;
         private System.Windows.Forms.Button ExportButton;
         private System.Windows.Forms.DataGridView TabulkaCommitu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nazev;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sha;
         private System.Windows.Forms.Button UlozitButton;
         private System.Windows.Forms.Label notifikace;
         private System.Windows.Forms.Label posledniRefresh;
         private System.Windows.Forms.Label noveSoubory;
         private System.Windows.Forms.Label pocetRadku;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nazev;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deleted;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sha;
     }
 }
 
