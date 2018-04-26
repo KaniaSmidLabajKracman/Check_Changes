@@ -311,6 +311,18 @@ namespace ProjektSTI
 
             Sluzba s = new Sluzba();
             String nazev = TabulkaCommitu.SelectedRows[0].Cells[0].Value.ToString();
+            if (nazev.Contains(@"/"))
+            {
+                char parser = '/';
+                string[] parsed = nazev.Split(parser);
+                if(parsed != null)
+                {
+                    nazev = parsed[parsed.Length - 1];
+                }else
+                {
+                    nazev = "nevim.java";
+                }
+            }
             String cesta = VyberMistoUlozeni(nazev);
             String sha = TabulkaCommitu.SelectedRows[0].Cells[2].Value.ToString();
             String status = TabulkaCommitu.SelectedRows[0].Cells[3].Value.ToString();
