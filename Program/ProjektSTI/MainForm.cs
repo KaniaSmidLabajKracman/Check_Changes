@@ -303,35 +303,39 @@ namespace ProjektSTI
             String nazev = TabulkaCommitu.SelectedRows[0].Cells[0].Value.ToString();
             String cesta = VyberMistoUlozeni(nazev);
             String sha = TabulkaCommitu.SelectedRows[0].Cells[2].Value.ToString();
-            try
+            String status = TabulkaCommitu.SelectedRows[0].Cells[3].Value.ToString();
+            if (!status.Equals("Removed"))
             {
-                if (cesta != null)
+                try
                 {
-                    LogniCas();
-                    notifikace.Text = "Ukládám soubor...";
-                    
-
-                    var uloz = await s.StahniSouborZGituAsync(cesta, nazev, sha);
-
-                    if (uloz)
+                    if (cesta != null)
                     {
-                        notifikace.Text = "Soubor uložen do: " + cesta;
-                        Console.WriteLine("ulozeno do: " + cesta);
+                        LogniCas();
+                        notifikace.Text = "Ukládám soubor...";
+
+
+                        var uloz = await s.StahniSouborZGituAsync(cesta, nazev, sha);
+
+                        if (uloz)
+                        {
+                            notifikace.Text = "Soubor uložen do: " + cesta;
+                            Console.WriteLine("ulozeno do: " + cesta);
+                        }
+                        else
+                        {
+                            notifikace.Text = "Soubor se nepodařilo uložit";
+                            Console.WriteLine("neulozeno: " + cesta + " " + nazev + " " + sha);
+                        }
                     }
                     else
                     {
-                        notifikace.Text = "Soubor se nepodařilo uložit";
-                        Console.WriteLine("neulozeno: " + cesta + " " + nazev + " " + sha);
+                        Console.WriteLine("cesta nevybrana");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Console.WriteLine("cesta nevybrana");
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
                 pracuji = false;
 
