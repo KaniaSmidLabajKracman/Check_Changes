@@ -41,9 +41,9 @@
             this.noveSoubory = new System.Windows.Forms.Label();
             this.pocetRadku = new System.Windows.Forms.Label();
             this.nazev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Kontrolka)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabulkaCommitu)).BeginInit();
             this.SuspendLayout();
@@ -109,9 +109,9 @@
             this.TabulkaCommitu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TabulkaCommitu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nazev,
-            this.deleted,
             this.datum,
-            this.sha});
+            this.sha,
+            this.deleted});
             this.TabulkaCommitu.Location = new System.Drawing.Point(-2, 57);
             this.TabulkaCommitu.MultiSelect = false;
             this.TabulkaCommitu.Name = "TabulkaCommitu";
@@ -180,12 +180,6 @@
             this.nazev.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.nazev.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // deleted
-            // 
-            this.deleted.HeaderText = "smazáno?";
-            this.deleted.Name = "deleted";
-            this.deleted.ReadOnly = true;
-            // 
             // datum
             // 
             this.datum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -202,6 +196,12 @@
             this.sha.ReadOnly = true;
             this.sha.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.sha.Visible = false;
+            // 
+            // deleted
+            // 
+            this.deleted.HeaderText = "smazáno?";
+            this.deleted.Name = "deleted";
+            this.deleted.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -244,9 +244,9 @@
         private System.Windows.Forms.Label noveSoubory;
         private System.Windows.Forms.Label pocetRadku;
         private System.Windows.Forms.DataGridViewTextBoxColumn nazev;
-        private System.Windows.Forms.DataGridViewTextBoxColumn deleted;
         private System.Windows.Forms.DataGridViewTextBoxColumn datum;
         private System.Windows.Forms.DataGridViewTextBoxColumn sha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deleted;
     }
 }
 
