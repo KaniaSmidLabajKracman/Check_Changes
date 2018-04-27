@@ -308,27 +308,27 @@ namespace ProjektSTI
                 await Task.Delay(100);
             }
             pracuji = true;
-
-            Sluzba s = new Sluzba();
-            String nazev = TabulkaCommitu.SelectedRows[0].Cells[0].Value.ToString();
-            String nazev2 = nazev;
-            if (nazev.Contains(@"/"))
-            {
-                char parser = '/';
-                string[] parsed = nazev.Split(parser);
-                if(parsed != null)
-                {
-                    nazev2 = parsed[parsed.Length - 1];
-                }else
-                {
-                    nazev2 = "nevim.java";
-                }
-            }
-            String cesta = VyberMistoUlozeni(nazev2);
-            String sha = TabulkaCommitu.SelectedRows[0].Cells[2].Value.ToString();
             String status = TabulkaCommitu.SelectedRows[0].Cells[3].Value.ToString();
             if (!status.Equals("removed"))
             {
+                Sluzba s = new Sluzba();
+                String nazev = TabulkaCommitu.SelectedRows[0].Cells[0].Value.ToString();
+                String nazev2 = nazev;
+                if (nazev.Contains(@"/"))
+                {
+                    char parser = '/';
+                    string[] parsed = nazev.Split(parser);
+                    if (parsed != null)
+                    {
+                        nazev2 = parsed[parsed.Length - 1];
+                    }
+                    else
+                    {
+                        nazev2 = "nevim.java";
+                    }
+                }
+                String cesta = VyberMistoUlozeni(nazev2);
+                String sha = TabulkaCommitu.SelectedRows[0].Cells[2].Value.ToString();
                 try
                 {
                     if (cesta != null)
@@ -359,6 +359,11 @@ namespace ProjektSTI
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+            else {
+
+                notifikace.Text = "Soubor ve vybrané verzi nelze \n uložit jelikož je vymazán";
+
             }
                 pracuji = false;
 
