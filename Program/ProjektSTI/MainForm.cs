@@ -311,19 +311,20 @@ namespace ProjektSTI
 
             Sluzba s = new Sluzba();
             String nazev = TabulkaCommitu.SelectedRows[0].Cells[0].Value.ToString();
+            String nazev2 = nazev;
             if (nazev.Contains(@"/"))
             {
                 char parser = '/';
                 string[] parsed = nazev.Split(parser);
                 if(parsed != null)
                 {
-                    nazev = parsed[parsed.Length - 1];
+                    nazev2 = parsed[parsed.Length - 1];
                 }else
                 {
-                    nazev = "nevim.java";
+                    nazev2 = "nevim.java";
                 }
             }
-            String cesta = VyberMistoUlozeni(nazev);
+            String cesta = VyberMistoUlozeni(nazev2);
             String sha = TabulkaCommitu.SelectedRows[0].Cells[2].Value.ToString();
             String status = TabulkaCommitu.SelectedRows[0].Cells[3].Value.ToString();
             if (!status.Equals("removed"))
