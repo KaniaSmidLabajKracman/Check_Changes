@@ -278,9 +278,9 @@ namespace ProjektSTI
                     if (excel)
                     {
                         notifikace.Text = "Soubor exportován do: " + cesta;
-                        TabulkaCommitu.ClearSelection();
-                        TabulkaCommitu.Rows.Clear();
-                        TabulkaCommitu.Refresh();
+                        //TabulkaCommitu.ClearSelection();
+                        //TabulkaCommitu.Rows.Clear();
+                        //TabulkaCommitu.Refresh();
                         Console.WriteLine("excel vytvoren v: " + cesta);
                     }
                     else
@@ -363,6 +363,7 @@ namespace ProjektSTI
             else {
 
                 notifikace.Text = "Soubor ve vybrané verzi nelze \n uložit jelikož je vymazán";
+                MessageBox.Show("Soubor ve vybrané verzi nelze \n uložit jelikož je vymazán", "Nelze uložit");
 
             }
                 pracuji = false;
