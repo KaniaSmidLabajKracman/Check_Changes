@@ -20,3 +20,8 @@ d
 d
 d
 d
+pikachu
+reichu
+bulbasaur
+strazci vesmiru
+rock-and-roll
