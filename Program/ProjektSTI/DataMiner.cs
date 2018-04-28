@@ -239,37 +239,70 @@ namespace ProjektSTI
 
         public string UdelejRequestGitHub(string url, Dictionary<string, string> parametry = null)
         {
-
+            //System.Media.SoundPlayer player = new System.Media.SoundPlayer(System.AppDomain.CurrentDomain.BaseDirectory+"/Circus-clown-horn-sound.wav");
+            Boolean tryAgain = true;
+            //player.Play();
             //https://stackoverflow.com/questions/2859790/the-request-was-aborted-could-not-create-ssl-tls-secure-channel
-            ServicePointManager.Expect100Continue = true;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            while (tryAgain)
+            {
+                try
+                {
+                    ServicePointManager.Expect100Continue = true;
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            var txt = System.IO.File.ReadAllText(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\config.json");
-            Nastaveni n = JsonConvert.DeserializeObject<Nastaveni>(txt);
-            // github api si nekdy doplni nejakej parametr sam, potrebuju zjistit, jestli uz nejakej parametr existuje, abych mohl navazat
-            string znak = url.Contains("?") ? "&" : "?";
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + znak + "access_token=" + n.githubToken + "&" + PrevedSlovnikParametruNaString(parametry));
-            request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.Reload);
-            request.ContentType = "application/vnd.github.v3+json";
-            request.Method = "GET";
-            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0";
-            //request.Headers["Time-Zone"] = "Europe/Prague";
-            try
-            {
-                WebResponse response = request.GetResponse();
-                Stream dataStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(dataStream);
-                string responseFromServer = reader.ReadToEnd();
-                reader.Close();
-                response.Close();
-                return responseFromServer;
-            }catch(Exception ex)
-            {
-                // RETHROW - nejde udelat request
-                new Logger(ex.Message).Loguj();
-                throw new Exception("Chyba! Nesprávný request, zkontrolujte vstupní parametry");
+                    var txt = System.IO.File.ReadAllText(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\config.json");
+                    Nastaveni n = JsonConvert.DeserializeObject<Nastaveni>(txt);
+                     // github api si nekdy doplni nejakej parametr sam, potrebuju zjistit, jestli uz nejakej parametr existuje, abych mohl navazat
+                    string znak = url.Contains("?") ? "&" : "?";
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + znak + "access_token=" + n.githubToken + "&" + PrevedSlovnikParametruNaString(parametry));
+                    request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.Reload);
+                    request.ContentType = "application/vnd.github.v3+json";
+                    request.Method = "GET";
+                    request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0";
+                    //request.Headers["Time-Zone"] = "Europe/Prague";
+            
+                    WebResponse response = request.GetResponse();
+                    Stream dataStream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(dataStream);
+                    string responseFromServer = reader.ReadToEnd();
+                    reader.Close();
+                    response.Close();
+                    tryAgain = false;
+                    return responseFromServer;
+                }
+                catch (Exception ex)
+                {
+                    //player.Play();
+                    System.Threading.Thread.Sleep(2000);
+                    //Boolean ok = false;
+                    //while (ok == false)
+                    //{
+                    //    ok = testConnection();
+                    //}
+                    new Logger(ex.Message).Loguj();
+                    //throw new Exception("Chyba! Nesprávný request, zkontrolujte vstupní parametry");
+                }
             }
+            return null;
+            
         }
+
+        //public Boolean testConnection()
+        //{
+        //    System.Threading.Thread.Sleep(3000);
+        //    try
+        //    {
+        //        using (var client = new WebClient())
+        //        using (client.OpenRead("http://clients3.google.com/generate_204"))
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
         /// <summary>
         /// vraci vsechny commity pro jeden soubor
