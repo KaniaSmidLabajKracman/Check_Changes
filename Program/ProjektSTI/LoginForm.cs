@@ -18,7 +18,7 @@ namespace ProjektSTI
     {
         string Repozitar;
         string Uzivatel;
-        String tokenText = "zde token";
+        String tokenText = "d6b0523ae95ec82589d905a09b5c9d1dd2a20ee5";
 
         public LoginForm()
         {
@@ -100,23 +100,37 @@ namespace ProjektSTI
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            string uzivatel = uzivatelBox.Text;
-            string repozitar = repozitarBox.Text;
+            //string uzivatel = uzivatelBox.Text;
+            //string repozitar = repozitarBox.Text;
+
 
             if (ZkouskaInternetovehoPripojeni())
             {
                 try
                 {
-                    NastavDataMiner(repozitar, uzivatel, tokenText);
-                    UdelejRequestGitHub("http://api.github.com" + "/repos/" + uzivatel + "/" + repozitar + "/" + "languages");
-                    this.Hide();
-                    Sluzba s = new Sluzba();
-                    s.NastavDataMiner(repozitar, uzivatel, tokenText);
-                    MainForm mf = new MainForm();
-                    mf.Text = uzivatel + "/" + repozitar;
-                    mf.StartPosition = FormStartPosition.CenterParent;
-                    mf.ShowDialog();
-                    this.Close();
+
+                    Uri url;
+                    bool validUrl = Uri.TryCreate(uzivatelBox.Text, UriKind.Absolute, out url) && (url.Scheme == Uri.UriSchemeHttp || url.Scheme == Uri.UriSchemeHttps) && (url.PathAndQuery.Split('/').Length > 2);
+
+                    if (validUrl)
+                    {
+                        this.Hide();
+                        string[] path = url.PathAndQuery.Split('/');
+                        string uzivatel = path[1];
+                        string repozitar = path[2];
+                    
+
+                        NastavDataMiner(repozitar, uzivatel, tokenText);
+                        UdelejRequestGitHub("http://api.github.com" + "/repos/" + uzivatel + "/" + repozitar + "/" + "languages");
+                        this.Hide();
+                        Sluzba s = new Sluzba();
+                        s.NastavDataMiner(repozitar, uzivatel, tokenText);
+                        MainForm mf = new MainForm();
+                        mf.Text = uzivatel + "/" + repozitar;
+                        mf.StartPosition = FormStartPosition.CenterParent;
+                        mf.ShowDialog();
+                        this.Close();
+                    }
                 }
                 catch (Exception)
                 {
