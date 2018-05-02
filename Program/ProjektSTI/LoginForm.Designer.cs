@@ -30,31 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.uzivatelBox = new System.Windows.Forms.TextBox();
-            this.repozitarBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // uzivatelBox
             // 
             this.uzivatelBox.ForeColor = System.Drawing.Color.LightGray;
-            this.uzivatelBox.Location = new System.Drawing.Point(12, 44);
+            this.uzivatelBox.Location = new System.Drawing.Point(15, 64);
             this.uzivatelBox.Name = "uzivatelBox";
             this.uzivatelBox.Size = new System.Drawing.Size(173, 20);
             this.uzivatelBox.TabIndex = 5;
-            this.uzivatelBox.Text = "Uživatel";
+            this.uzivatelBox.Text = "https://github.com/KaniaSmidLabajKracman/Check_Changes";
             this.uzivatelBox.TextChanged += new System.EventHandler(this.uzivatelBox_TextChanged_1);
-            // 
-            // repozitarBox
-            // 
-            this.repozitarBox.ForeColor = System.Drawing.Color.LightGray;
-            this.repozitarBox.Location = new System.Drawing.Point(12, 83);
-            this.repozitarBox.Name = "repozitarBox";
-            this.repozitarBox.Size = new System.Drawing.Size(173, 20);
-            this.repozitarBox.TabIndex = 6;
-            this.repozitarBox.Text = "Soubor ke sledování";
             // 
             // button1
             // 
@@ -82,24 +71,12 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(72, 28);
+            this.label2.Location = new System.Drawing.Point(74, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Uživatel";
+            this.label2.Text = "URL";
             this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(40, 67);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Soubor k sledování";
             // 
             // LoginForm
             // 
@@ -107,11 +84,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(291, 113);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.repozitarBox);
             this.Controls.Add(this.uzivatelBox);
             this.Name = "LoginForm";
             this.Text = "Nastavenit projekt";
@@ -123,10 +98,8 @@
 
         #endregion
         private System.Windows.Forms.TextBox uzivatelBox;
-        private System.Windows.Forms.TextBox repozitarBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
     }
 }
