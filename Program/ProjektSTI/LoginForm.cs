@@ -18,7 +18,7 @@ namespace ProjektSTI
     {
         string Repozitar;
         string Uzivatel;
-        String tokenText = "d6b0523ae95ec82589d905a09b5c9d1dd2a20ee5";
+        String tokenText = "78b7bab221ee9da4d800711a216828593687dfbd";
 
         public LoginForm()
         {
@@ -28,15 +28,11 @@ namespace ProjektSTI
         private void LoginForm_Load(object sender, EventArgs e)
         {
             NactiConfig();
-
-            repozitarBox.Text = Repozitar;
             uzivatelBox.Text = Uzivatel;
             
             
             uzivatelBox.GotFocus += new EventHandler(this.uzivatelBox_GotFocus);
             uzivatelBox.LostFocus += new EventHandler(this.uzivatelBox_LostFocus);
-            repozitarBox.GotFocus += new EventHandler(this.repozitarBox_GotFocus);
-            repozitarBox.LostFocus += new EventHandler(this.repozitarBox_LostFocus);
         }
 
         private void NactiConfig()
