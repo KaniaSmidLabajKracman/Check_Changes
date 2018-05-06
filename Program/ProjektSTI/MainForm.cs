@@ -94,7 +94,8 @@ namespace ProjektSTI
             {
                     UkazatelCasu.Font = new Font("Arial", 11);
                     UkazatelCasu.ForeColor = Color.Red;
-                    UkazatelCasu.Text = "Bez připojení k internetu!!"; 
+                    UkazatelCasu.Text = "Bez připojení k internetu!!";
+                    notifikace.Text = "";
             }
             NastavTlacitkaAKontrolku();
 
@@ -128,12 +129,12 @@ namespace ProjektSTI
                 MessageBox.Show(ex.Message);
                 Application.Restart();
             }
-            noveSoubory.Text = "Nové soubory: " + pocetNovychSouboru + "souborů";
+            noveSoubory.Text = "Počet nových souborů po poslední aktualizace: " + pocetNovychSouboru + " souborů";
             celkovyPocetSouboru = celkovyPocetSouboru + pocetNovychSouboru;
 
             var jazyky = await s.SpocitejPocetRadkuVSouborechUrcitehoTypuAsync("java");
             
-            pocetRadku.Text = "Počet řádků: " + jazyky.ToString();
+            pocetRadku.Text = "Počet řádků Java souborů v projektu: " + jazyky.ToString();
             pocetNovychSouboru = 0;
 
             pracuji = false;
@@ -386,7 +387,7 @@ namespace ProjektSTI
 
         private void LogniCas()
         {
-            posledniRefresh.Text = "Poslední refresh v: " + DateTime.Now.ToString();
+            posledniRefresh.Text = "Poslední aktualizace v: " + DateTime.Now.ToString();
         }
 
         private string VyberMistoUlozeni(string nazev)
