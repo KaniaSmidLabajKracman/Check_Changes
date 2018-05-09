@@ -35,9 +35,12 @@ namespace ProjektSTI
         static Boolean pracuji = false;
 
         // čas poslední kontroly - pro správné opětovné hledání commitů
+        //static DateTime posledniKontrola = getLastCheckDate();
+        static DateTime posledniKontrola = JsonConvert.DeserializeObject<DateTime>(System.IO.File.ReadAllText(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\datetime.json"));
+
         //static DateTime posledniKontrola = new DateTime(2007, 10, 1, 0, 0, 0); // 01.10.2007 00:00:00 - První commit na GitHubu
 
-        static DateTime posledniKontrola = DateTime.Now;
+        //static DateTime posledniKontrola = DateTime.Now;
 
         // počet nových commitů během jednoho cyklu hledání - pouze pro vypsání do logu
         static int pocetNovychSouboru = 0;
@@ -54,6 +57,23 @@ namespace ProjektSTI
             sw.Restart();
         }
 
+        private static DateTime getLastCheckDate()
+{
+            try
+            {
+                var json = System.IO.File.ReadAllText(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\datetime.json");
+                DateTime posledniKontrola = JsonConvert.DeserializeObject<DateTime>(json);
+                Console.WriteLine(posledniKontrola);
+                //posledniRefresh.Text = "Poslední aktualizace v: " + DateTime.Now.ToString();
+            }
+            catch (Exception ex)
+            {
+                new Logger(ex.Message).Loguj();
+                // RETHROW - nepodarilo se nacist nastaveni z configu - bud chybi config, nebo tam neni nastaveni
+                throw new Exception("Chyba! Nepodařilo se získat nastavení z konfiguračního souboru");
+            }
+            return posledniKontrola;
+}
         private void ZpracovaniCasovace(Object objekt, EventArgs eventargs)
         {
             if (ZkouskaInternetovehoPripojeni())
@@ -112,8 +132,8 @@ namespace ProjektSTI
             NastavTlacitkaAKontrolku();
             Sluzba s = new Sluzba();
 
-            
 
+            SaveTime();
             LogniCas();
             notifikace.Text = "Zpracovávám commity...";
             try
@@ -138,6 +158,25 @@ namespace ProjektSTI
             pocetNovychSouboru = 0;
 
             pracuji = false;
+        }
+        private void SaveTime()
+        {
+            string json = JsonConvert.SerializeObject(DateTime.Now);
+            string cesta = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\datetime.json";
+            try
+            {
+                if (System.IO.File.Exists(cesta))
+                {
+                    System.IO.File.WriteAllText(cesta, json);
+                }
+                else
+                {
+                    System.IO.File.WriteAllText(cesta, json);
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void NastavTlacitkaAKontrolku()
