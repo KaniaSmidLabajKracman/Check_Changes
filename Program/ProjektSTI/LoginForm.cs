@@ -18,7 +18,7 @@ namespace ProjektSTI
     {
         string Repozitar;
         string Uzivatel;
-        String tokenText = "78b7bab221ee9da4d800711a216828593687dfbd";
+        String tokenText = "hg";
 
         public LoginForm()
         {
@@ -110,14 +110,11 @@ namespace ProjektSTI
 
                     if (validUrl)
                     {
-                        this.Hide();
+                        //this.Hide();
                         string[] path = url.PathAndQuery.Split('/');
                         string uzivatel = path[1];
                         string repozitar = path[2];
-                    
 
-                        NastavDataMiner(repozitar, uzivatel, tokenText);
-                        UdelejRequestGitHub("http://api.github.com" + "/repos/" + uzivatel + "/" + repozitar + "/" + "languages");
                         this.Hide();
                         Sluzba s = new Sluzba();
                         s.NastavDataMiner(repozitar, uzivatel, tokenText);
@@ -126,6 +123,13 @@ namespace ProjektSTI
                         mf.StartPosition = FormStartPosition.CenterParent;
                         mf.ShowDialog();
                         this.Close();
+                    }
+                    else {
+
+                        label1.Font = new Font("Arial", 11);
+                        label1.ForeColor = Color.Red;
+                        label1.Text = "Špatná data";
+
                     }
                 }
                 catch (Exception)
