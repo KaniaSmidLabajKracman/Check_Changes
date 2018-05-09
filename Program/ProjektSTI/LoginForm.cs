@@ -28,7 +28,7 @@ namespace ProjektSTI
         private void LoginForm_Load(object sender, EventArgs e)
         {
             NactiConfig();
-            uzivatelBox.Text = Uzivatel;
+            uzivatelBox.Text = "https://github.com/" + Uzivatel + "/" + Repozitar;
             
             
             uzivatelBox.GotFocus += new EventHandler(this.uzivatelBox_GotFocus);
