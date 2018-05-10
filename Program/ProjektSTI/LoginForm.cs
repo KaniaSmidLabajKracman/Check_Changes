@@ -18,7 +18,7 @@ namespace ProjektSTI
     {
         string Repozitar;
         string Uzivatel;
-        String tokenText = "hg";
+        String tokenText = "3a83251c7641ad3b56c11c9ca3a20d82a810a42f";
 
         public LoginForm()
         {
@@ -118,7 +118,10 @@ namespace ProjektSTI
                         this.Hide();
                         Sluzba s = new Sluzba();
                         s.NastavDataMiner(repozitar, uzivatel, tokenText);
-                        MainForm mf = new MainForm();
+                        //DateTime cas = s.nastavCas2(repozitar);
+                        DateTime cas = nastavCas2(repozitar);
+                        MainForm mf = new MainForm(cas, repozitar);
+                        //mf.posledniKontrola = DateTime.Now();
                         mf.Text = uzivatel + "/" + repozitar;
                         mf.StartPosition = FormStartPosition.CenterParent;
                         mf.ShowDialog();
@@ -149,6 +152,26 @@ namespace ProjektSTI
 
         }
 
+        public DateTime nastavCas2(string Repozitar) // nacita z jednotlivych souboru pro kazdy repozitar
+        {
+            DateTime cas;
+            try
+            {
+                var json = System.IO.File.ReadAllText(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\" + Repozitar + ".json");
+                cas = JsonConvert.DeserializeObject<DateTime>(json);
+                Console.WriteLine(cas);
+                return cas;
+
+            }
+            catch (Exception ex)
+            {
+                new Logger(ex.Message).Loguj();
+                return DateTime.Now;
+                // RETHROW - nepodarilo se nacist nastaveni z configu - bud chybi config, nebo tam neni nastaveni
+                throw new Exception("Chyba! Nepodařilo se získat nastavení z konfiguračního souboru");
+            }
+            
+        }
         private void uzivatelBox_TextChanged(object sender, EventArgs e)
         {
 

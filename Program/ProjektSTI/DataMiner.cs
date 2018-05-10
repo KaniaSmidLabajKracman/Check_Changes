@@ -50,6 +50,73 @@ namespace ProjektSTI
             }
         }
 
+        public DateTime nastavCas(string Repozitar) // objekt DateTimes - mrdat
+        {
+            List<DateTimes> casy;
+            try
+            {
+                var json = System.IO.File.ReadAllText(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\datetime.json");
+                casy = JsonConvert.DeserializeObject<List<DateTimes>>(json);
+                Console.WriteLine(casy);
+                foreach (DateTimes cas in casy)
+                {
+                    if (cas.Repozitar == Repozitar)
+                    {
+                        return cas.Cas;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                new Logger(ex.Message).Loguj();
+                // RETHROW - nepodarilo se nacist nastaveni z configu - bud chybi config, nebo tam neni nastaveni
+                throw new Exception("Chyba! Nepodařilo se získat nastavení z konfiguračního souboru");
+            }
+            return DateTime.Now;
+        }
+
+        public DateTime nastavCas2(string Repozitar) // nacita z jednotlivych souboru pro kazdy repozitar
+        {
+            DateTime cas;
+            try
+            {
+                var json = System.IO.File.ReadAllText(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\"+Repozitar+".json");
+                cas = JsonConvert.DeserializeObject<DateTime>(json);
+                Console.WriteLine(cas);
+                return cas;
+
+            }
+            catch (Exception ex)
+            {
+                new Logger(ex.Message).Loguj();
+                return DateTime.Now;
+                // RETHROW - nepodarilo se nacist nastaveni z configu - bud chybi config, nebo tam neni nastaveni
+                throw new Exception("Chyba! Nepodařilo se získat nastavení z konfiguračního souboru");
+            }
+        }
+
+        public void SaveTime(string repozitar)
+        {
+            //DateTimes cas = new DateTimes(); 
+            string json = JsonConvert.SerializeObject(DateTime.Now);
+            string cesta = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\"+repozitar+".json";
+            try
+            {
+                if (System.IO.File.Exists(cesta))
+                {
+                    System.IO.File.WriteAllText(cesta, json);
+                }
+                else
+                {
+                    System.IO.File.WriteAllText(cesta, json);
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
         /// <summary>
         /// Vraci vsechny soubory vsech commitu uskutecnenych po case.
         /// </summary>
