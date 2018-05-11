@@ -18,7 +18,7 @@ namespace ProjektSTI
     {
         string Repozitar;
         string Uzivatel;
-        String tokenText = "hg";
+        String tokenText = "";
 
         public LoginForm()
         {
