@@ -36,19 +36,22 @@ namespace ProjektSTI
 
         // čas poslední kontroly - pro správné opětovné hledání commitů
         //static DateTime posledniKontrola = getLastCheckDate();
-        static DateTime posledniKontrola = JsonConvert.DeserializeObject<DateTime>(System.IO.File.ReadAllText(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\datetime.json"));
+        //public static DateTime posledniKontrola = JsonConvert.DeserializeObject<DateTime>(System.IO.File.ReadAllText(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\datetime.json"));
 
         //static DateTime posledniKontrola = new DateTime(2007, 10, 1, 0, 0, 0); // 01.10.2007 00:00:00 - První commit na GitHubu
 
-        //static DateTime posledniKontrola = DateTime.Now;
+        static DateTime posledniKontrola;
+        static string aktualniRepozitar;
 
         // počet nových commitů během jednoho cyklu hledání - pouze pro vypsání do logu
         static int pocetNovychSouboru = 0;
 
         static int celkovyPocetSouboru = 0;
 
-        public MainForm()
+        public MainForm(DateTime cas, string repozitar)
         {
+            posledniKontrola = cas;
+            aktualniRepozitar = repozitar;
             InitializeComponent();
             casovac.Tick += new EventHandler(ZpracovaniCasovace);
             casovac.Interval = 1000;
@@ -57,23 +60,6 @@ namespace ProjektSTI
             sw.Restart();
         }
 
-        private static DateTime getLastCheckDate()
-{
-            try
-            {
-                var json = System.IO.File.ReadAllText(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\datetime.json");
-                DateTime posledniKontrola = JsonConvert.DeserializeObject<DateTime>(json);
-                Console.WriteLine(posledniKontrola);
-                //posledniRefresh.Text = "Poslední aktualizace v: " + DateTime.Now.ToString();
-            }
-            catch (Exception ex)
-            {
-                new Logger(ex.Message).Loguj();
-                // RETHROW - nepodarilo se nacist nastaveni z configu - bud chybi config, nebo tam neni nastaveni
-                throw new Exception("Chyba! Nepodařilo se získat nastavení z konfiguračního souboru");
-            }
-            return posledniKontrola;
-}
         private void ZpracovaniCasovace(Object objekt, EventArgs eventargs)
         {
             if (ZkouskaInternetovehoPripojeni())
@@ -133,7 +119,7 @@ namespace ProjektSTI
             Sluzba s = new Sluzba();
 
 
-            SaveTime();
+            SaveTime(aktualniRepozitar);
             LogniCas();
             notifikace.Text = "Zpracovávám commity...";
             try
@@ -159,10 +145,11 @@ namespace ProjektSTI
 
             pracuji = false;
         }
-        private void SaveTime()
+        public void SaveTime(string repozitar)
         {
+            //DateTimes cas = new DateTimes(); 
             string json = JsonConvert.SerializeObject(DateTime.Now);
-            string cesta = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\datetime.json";
+            string cesta = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\" + repozitar + ".json";
             try
             {
                 if (System.IO.File.Exists(cesta))
